@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="jaatools_logo_bg.svg" />
+  <!--
+    JAATools — Space-Themed Landing (Static HTML)
+    ------------------------------------------------
+    1) Replace CONTACT_EMAIL and WHATSAPP_LINK below.
+    2) Commit as index.html to GitHub Pages.
+    3) In GitHub -> Settings -> Pages, add your custom domain jaa.tools and enforce HTTPS.
+
+    Notes:
+    - 100% self-contained (no external CSS/JS).
+    - Sci-fi/space look with animated starfield & subtle glows.
+    - Accessible contrast, keyboard focus, and reduced motion respect.
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JAATools — Automations, Bots & AI Systems</title>
+  <meta name="description" content="JAATools builds automations, chatbots, and AI systems that scale—WhatsApp flows, document AI, data pipelines, and subscription-based tools." />
+  <meta name="theme-color" content="#0b0616" />
+  <style>
+  :root{
+      --bg-0:#03010a;
+      --bg-1:#0b0616;
+      --bg-2:#1b1130;
+      --ink-0:#ffffff;
+      --ink-1:rgba(255,255,255,.86);
+      --ink-2:rgba(255,255,255,.72);
+      --ink-3:rgba(255,255,255,.6);
+      --line:rgba(255,255,255,.12);
+      --chip:rgba(255,255,255,.06);
+      --fuchsia:#e879f9;
+      --violet:#8b5cf6;
+      --indigo:#6366f1;
+      --cyan:#22d3ee;
+      --glow-fuchsia:rgba(232,121,249,.28);
+      --glow-cyan:rgba(34,211,238,.25);
+      --radius-1:14px;
+      --radius-2:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    }
+    
+  *{box-sizing:border-box}
+  html, body { max-width: 100vw; overflow-x: hidden; }
+  html, body {
+  overflow-y: scroll; /* keeps layout stable */
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+  /* Hide vertical scrollbar */
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Webkit */
+  }
+
+  /* Dot scroll indicator */
+  .scroll-dot {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--fuchsia), var(--cyan));
+    box-shadow: 0 0 12px var(--fuchsia), 0 0 24px var(--cyan);
+    opacity: 0.85;
+    transition: top 0.2s cubic-bezier(.4,2,.6,1), box-shadow 0.2s;
+    pointer-events: none;
+  }
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink-1);
+      background: radial-gradient(1200px 600px at 50% -10%, var(--bg-2), var(--bg-1) 40%, var(--bg-0) 90%) fixed;
+      font-family:var(--font);
+      line-height:1.55;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--ink-1);text-decoration:none}
+    a:hover{color:var(--ink-0)}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.9rem 1.15rem;border-radius:999px;border:1px solid transparent;
+      background:linear-gradient(90deg,var(--fuchsia),var(--violet),var(--indigo));
+      color:#fff;font-weight:600;box-shadow:0 6px 26px rgba(139,92,246,.28);
+      transition:transform .2s ease,opacity .2s ease, box-shadow .2s ease;
+      will-change:transform;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 34px rgba(139,92,246,.4)}
+    .btn.ghost{
+      background:transparent;border-color:var(--line);color:var(--ink-1)
+    }
+    header{
+      position:sticky;top:0;z-index:40;
+      backdrop-filter:saturate(130%) blur(10px);
+      background:rgba(0,0,0,.35);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:.7rem;font-weight:700;letter-spacing:.3px
+    }
+    .dot{
+      position:relative;width:34px;height:34px;border-radius:50%;
+      background:conic-gradient(from 210deg, var(--indigo), var(--fuchsia), var(--cyan));
+      box-shadow:0 0 32px rgba(139,92,246,.35), inset 0 0 18px rgba(255,255,255,.15);
+    }
+    .dot::after{
+      content:"";position:absolute;inset:0;border-radius:inherit;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.6), rgba(255,255,255,0) 40%);
+      animation:ping 2.2s infinite ease-in-out;
+    }
+    @keyframes ping{0%{transform:scale(.98);opacity:.7}70%{transform:scale(1.08);opacity:.1}100%{transform:scale(.98);opacity:.7}}
+    nav a{font-size:.95rem;color:var(--ink-2);margin-left:22px}
+    nav a:hover{color:#fff}
+    .mobile-toggle{display:none}
+    @media (max-width:860px){
+      nav{display:none}
+      .mobile-toggle{display:inline-flex;gap:8px;align-items:center;color:var(--ink-2);border:1px solid var(--line);padding:.55rem .8rem;border-radius:999px}
+      .mobile-menu{display:none;position:absolute;left:20px;right:20px;top:64px;border:1px solid var(--line);background:rgba(9,6,22,.9);backdrop-filter:blur(10px);border-radius:14px;padding:10px}
+      .mobile-menu a{display:block;padding:10px 12px;color:var(--ink-2)}
+      .mobile-menu a:hover{color:#fff;background:rgba(255,255,255,.05);border-radius:12px}
+      .mobile-open .mobile-menu{display:block}
+    }
+
+    /* Starfield canvas */
+    #stars{position:fixed;inset:0;z-index:-1}
+    .glow{
+      position:absolute;filter:blur(90px);opacity:.55;pointer-events:none;z-index:0
+    }
+    .glow.fuchsia{background:radial-gradient(closest-side, var(--glow-fuchsia), transparent);width:420px;height:420px;top:-120px;left:-120px}
+    .glow.cyan{background:radial-gradient(closest-side, var(--glow-cyan), transparent);width:520px;height:520px;right:-160px;bottom:-120px}
+
+    /* Hero */
+    .hero{position:relative;padding:92px 0 40px}
+    .chip{
+      display:inline-flex;align-items:center;gap:.5rem;
+      border:1px solid var(--line);background:rgba(255,255,255,.06);
+      padding:.4rem .7rem;border-radius:999px;color:var(--ink-3);font-size:.83rem
+    }
+    h1{
+      margin:14px 0 0;color:#fff;font-size:44px;line-height:1.08;letter-spacing:.2px
+    }
+    @media (min-width:900px){h1{font-size:64px}}
+    .lead{max-width:760px;margin:14px auto 0;color:var(--ink-2);font-size:1.08rem}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;justify-content:center}
+
+    /* Grids */
+    .grid{display:grid;gap:18px}
+    .cards-4{grid-template-columns:repeat(1,1fr)}
+    .cards-3{grid-template-columns:repeat(1,1fr)}
+    @media (min-width:720px){.cards-4{grid-template-columns:repeat(2,1fr)}.cards-3{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1000px){.cards-4{grid-template-columns:repeat(4,1fr)}.cards-3{grid-template-columns:repeat(3,1fr)}}
+
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius:var(--radius-2);padding:18px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:.2rem 0;color:#fff;font-size:1.05rem}
+    .card p{margin:.35rem 0 0;color:var(--ink-3);font-size:.95rem}
+    .icon{
+      width:36px;height:36px;border-radius:12px;
+      display:inline-flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,.1);margin-bottom:8px
+    }
+    .section{position:relative;padding:70px 0}
+    .section-title{text-align:center;margin-bottom:10px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.45rem;color:var(--ink-3);
+      border:1px solid var(--line);background:rgba(255,255,255,.05);
+      padding:.35rem .65rem;border-radius:999px;font-size:.78rem
+    }
+    .subtitle{max-width:820px;margin:10px auto 0;text-align:center;color:var(--ink-2)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip-pill{border:1px solid var(--line);background:var(--chip);padding:.4rem .7rem;border-radius:999px;color:var(--ink-2);font-size:.86rem}
+
+    /* Contact */
+    .contact-grid{display:grid;gap:18px}
+    @media (min-width:940px){.contact-grid{grid-template-columns:1.1fr .9fr}}
+    .input,.textarea{
+      width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);
+      color:#fff;padding:.8rem .9rem;border-radius:12px;outline:none
+    }
+    .textarea{min-height:120px;resize:vertical}
+    .note{font-size:.9rem;color:var(--ink-3);margin-top:6px}
+
+    footer{border-top:1px solid var(--line);padding:30px 0;background:rgba(0,0,0,.65)}
+    .ft{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between;color:var(--ink-3)}
+    .links a{color:var(--ink-3);margin-left:16px}
+    .links a:hover{color:#fff}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .dot::after{animation:none}
+    }
+    /* Focus */
+    :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:10px}
+    /* Selection */
+    ::selection{background:rgba(232,121,249,.35)}
+  </style>
+</head>
+<body>
+  <div class="scroll-dot" id="scrollDot" aria-hidden="true"></div>
+  <script>
+    // ===== Replace these with your details =====
+    const CONTACT_EMAIL = "contact@jaa.tools";
+    const WHATSAPP_LINK = "https://wa.me/0000000000"; // e.g., https://wa.me/961XXXXXXXX
+    // ===========================================
+  </script>
+
+  <!-- Background starfield canvas + glows -->
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="glow fuchsia"></div>
+  <div class="glow cyan"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand">
+  <img src="jaatools_logo.svg" alt="JAATools logo" style="width:34px;height:34px;object-fit:contain;filter:invert(1) brightness(1000%);" aria-hidden="true" />
+        <span>JAATools</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#microtools">Micro-tools</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <!-- <a id="waTop" class="btn" href="#" target="_blank" rel="noopener">💬 WhatsApp Demo</a> -->
+      </nav>
+      <!-- <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu">Menu ▾</button> -->
+    <!-- </div>
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#top" class="brand">
+  <img src="jaatools_logo.svg" alt="JAATools logo" style="width:34px;height:34px;object-fit:contain;filter:invert(1) brightness(1000%);" aria-hidden="true" />
+        <span>JAATools</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#microtools">Micro-tools</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a id="waTop" class="btn" href="#" target="_blank" rel="noopener">💬 WhatsApp Demo</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileMenu">Menu ▾</button>
+    </div> -->
+    <!-- <div class="container mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile menu">
+      <a href="#services">Services</a>
+      <a href="#microtools">Micro-tools</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a id="waTopM" href="#" class="btn" target="_blank" rel="noopener">WhatsApp Demo</a>
+    --></div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container" style="text-align:center">
+      <span class="chip">🚀 Ship AI at light-speed</span>
+      <h1>Automations, Bots & AI Systems —<br/>Built to Scale Across Any Field</h1>
+      <p class="lead">
+        We only do the hard part, Research and a Working well Documented Prototype. 
+        Free prototype demo for your idea in only few days. 
+        We only take the new challenging ideas.
+      </p>
+      <div class="hero-actions">
+        <!-- <a id="waHero" class="btn" href="#" target="_blank" rel="noopener">🤖 Get a WhatsApp Demo</a> -->
+        <a class="btn ghost" href="#services">✨ Explore Services</a>
+      </div>
+
+      <!-- Quick highlights -->
+      <div class="grid cards-4" style="margin-top:22px">
+        <div class="card"><div class="icon">⚡</div><h3>Launch in days</h3><p>Prototypes in 48–72h. Iterate weekly.</p></div>
+        <div class="card"><div class="icon">🛡️</div><h3>Privacy-first</h3><p>Minimal data retention, strict scoping.</p></div>
+        <div class="card"><div class="icon">📈</div><h3>Built to scale</h3><p>From single bot to multi-tenant apps.</p></div>
+        <div class="card"><div class="icon">🗄️</div><h3>Data pipelines</h3><p>Clean, validate, enrich and report.</p></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow">Core capabilities</span>
+        <h2 style="margin:10px 0 0;color:#fff">Everything AI: strategy → build → operate</h2>
+        <p class="subtitle">We don’t just hand over a model; we own the outcome. From WhatsApp automations to LLM apps, from document AI to analytics — we make it real.</p>
+      </div>
+
+      <div class="grid cards-3" style="margin-top:18px">
+        <div class="card">
+          <div class="icon">💬</div>
+          <h3>Chatbots & Assistants</h3>
+          <p>WhatsApp, web, Instagram DMs. Sales, support, booking, product guides, knowledge bases — bilingual by default.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔗</div>
+          <h3>Automations & Integrations</h3>
+          <p>Zapier/Make, custom APIs, Google Workspace, CRMs. Turn manual tasks into background systems that never forget.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>Document AI</h3>
+          <p>OCR, invoice → sheet, contract Q&A, PDF form-fillers, compliance checks.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🖼️</div>
+          <h3>Vision & Media</h3>
+          <p>Thumbnail/caption generators, background removal, product tagging, video clipping & subtitles.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📆</div>
+          <h3>Scheduling & Booking</h3>
+          <p>End-to-end scheduling in WhatsApp and web. Reminders, deposits, COD support, staff dashboards.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🌐</div>
+          <h3>Multilingual & Localization</h3>
+          <p>Arabic/English content, translation pipelines, locale-aware experiences for MENA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Micro Tools -->
+  <section id="microtools" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow">Fast, feasible & scalable</span>
+        <h2 style="margin:10px 0 0;color:#fff">Our Micro-Tools Library</h2>
+        <p class="subtitle">Prebuilt scripts we can brand and deploy for multiple clients in days. Pick a tool, we customize + ship.</p>
+      </div>
+
+      <div class="grid cards-3" style="margin-top:18px">
+        <div class="card">
+          <div class="icon">🧩</div>
+          <h3>Custom QR Code Designer</h3>
+          <p>Logos, colors, shapes, gradients, UTMs & scan analytics.</p>
+          <div class="chips"><span class="chip-pill">Get early access</span></div>
+        </div>
+        <div class="card">
+          <div class="icon">🖼️</div>
+          <h3>Thumbnail Generator</h3>
+          <p>Brand-aware composition, contrast heuristics, face detection, exports for YT/Reels/Shorts.</p>
+          <div class="chips"><span class="chip-pill">Get early access</span></div>
+        </div>
+        <div class="card">
+          <div class="icon">📥</div>
+          <h3>IG → WhatsApp Auto-Reply</h3>
+          <p>DM auto-responses that drive to a WhatsApp intake flow for bookings & leads.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧾</div>
+          <h3>Invoice → Sheet Parser</h3>
+          <p>OCR + validation to push line items into Google Sheets/CSV.</p>
+        </div>
+        <div class="card">
+          <div class="icon">❓</div>
+          <h3>Web/WhatsApp FAQ Bot</h3>
+          <p>Answers from your docs/website with guardrails and feedback capture.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🗓️</div>
+          <h3>WhatsApp Booking Flow</h3>
+          <p>Available slots, reminders, no-show reduction, deposits or COD.</p>
+        </div>
+        <div class="card">
+          <div class="icon">✂️</div>
+          <h3>Background Remover API</h3>
+          <p>Batch product photo cleanup with sizing presets for marketplaces.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔍</div>
+          <h3>Lead Enrichment Engine</h3>
+          <p>Scrape, verify, dedupe, and score—ready for outreach.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📚</div>
+          <h3>Contract Q&A Assistant</h3>
+          <p>Upload PDFs and ask questions—cites clauses to reduce risk.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧮</div>
+          <h3>Analytics Auto-Reports</h3>
+          <p>GSheets → Slides/WhatsApp summaries on a schedule.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎧</div>
+          <h3>Auto-Translate Subtitles</h3>
+          <p>Arabic/English captions in minutes with speaker labels.</p>
+        </div>
+        <div class="card">
+          <div class="icon">💬</div>
+          <h3>Caption/Comment Generator</h3>
+          <p>IG/TikTok/LinkedIn posts with brand voice + hashtags.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow">Launchpad</span>
+        <h2 style="margin:10px 0 0;color:#fff">Featured Projects</h2>
+        <p class="subtitle">Fast-moving builds we’re deploying for early partners.</p>
+      </div>
+
+      <div class="grid cards-2" style="display:grid;gap:18px;grid-template-columns:repeat(1,1fr)">
+        <div class="card">
+          <div class="chip">🟣 Coming soon</div>
+          <h3 style="margin-top:10px;color:#fff;font-size:1.15rem">Cosmic QR — Branded QR Code Studio</h3>
+          <p style="margin-top:6px;color:var(--ink-3)">Generate beautiful, scannable QR codes with logos, custom shapes, gradients, and UTMs. Batch create for menus, posters, or packaging — with scan analytics.</p>
+          <div class="chips" style="margin-top:10px">
+            <a class="chip-pill" href="#contact">Get early access</a>
+            <span class="chip-pill">See sample gallery</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="chip" style="border-color:rgba(99,102,241,.35)">🔵 Prototype</div>
+          <h3 style="margin-top:10px;color:#fff;font-size:1.15rem">Nebula Thumbs — CTR-Focused Thumbnail Generator</h3>
+          <p style="margin-top:6px;color:var(--ink-3)">Auto-compose thumbnails using brand colors, face detection, and contrast heuristics. Export presets for YouTube, Reels, and Shorts in one click.</p>
+          <div class="chips" style="margin-top:10px">
+            <a class="chip-pill" href="#contact">Become a pilot user</a>
+            <span class="chip-pill">View demo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section" style="padding-bottom:80px">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow">Talk to us</span>
+        <h2 style="margin:10px 0 0;color:#fff">Book a demo or drop your brief</h2>
+        <p class="subtitle">We’ll respond within one business day with options, timelines, and a fixed quote.</p>
+      </div>
+
+      <div class="contact-grid" style="margin-top:18px">
+        <form class="card" onsubmit="return sendBrief(event)">
+          <label>Name</label>
+          <input class="input" type="text" name="name" placeholder="Jane Doe" required />
+          <label style="margin-top:10px">Email / WhatsApp</label>
+          <input class="input" type="text" name="contact" placeholder="jane@company.com / +961…" required />
+          <label style="margin-top:10px">What do you need?</label>
+          <textarea class="textarea" name="message" placeholder="Describe your project in 2–3 lines…" required></textarea>
+          <!-- <div class="chips" style="margin-top:6px">
+            <label><input type="checkbox" name="wa" /> <span style="margin-left:6px;color:var(--ink-2)">WhatsApp follow-up</span></label>
+            <label style="margin-left:10px"><input type="checkbox" name="nda" /> <span style="margin-left:6px;color:var(--ink-2)">NDA required</span></label>
+          </div> -->
+          <div style="display:flex;gap:10px;align-items:center;margin-top:14px">
+            <button class="btn" type="submit">Send brief</button>
+            <a class="btn ghost" id="emailLink" href="#">or email us</a>
+          </div>
+          <div class="note">No spam. We’ll only use your info to reply to your request.</div>
+        </form>
+
+        <div class="card">
+          <h3 style="color:#fff">How we work</h3>
+          <ul style="margin:10px 0 0;padding-left:18px;color:var(--ink-2)">
+            <li>Scoping call — 20 minutes to align on outcomes.</li>
+            <li>Prototype in days — quick demo on your data/brand.</li>
+            <li>We only do the hard part, Research and a Working well Documented Prototype</li>
+          </ul>
+
+          <div class="card" style="margin-top:14px;background:rgba(0,0,0,.25)">
+            <div style="color:var(--ink-2);font-size:.95rem;margin-bottom:8px">Popular starters</div>
+            <div class="chips">
+              <span class="chip-pill">WhatsApp booking bot</span>
+              <span class="chip-pill">FAQ assistant</span>
+              <span class="chip-pill">Invoice parser</span>
+              <span class="chip-pill">Lead engine</span>
+              <span class="chip-pill">Thumbnail studio</span>
+              <span class="chip-pill">QR designer</span>
+            </div>
+          </div>
+
+          <!-- <div class="note" style="margin-top:10px">
+            Prefer chat? <a id="waContact" href="#" target="_blank" rel="noopener" style="text-decoration:underline">Ping us on WhatsApp</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container ft">
+      <div>© <span id="year"></span> JAATools. Built among the stars.</div>
+      <div class="links" role="navigation" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#microtools">Micro-tools</a>
+        <a href="#projects">Projects</a>
+        <a id="emailLink2" href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Minimal JS: stars, links, mobile nav, and mailto
+    (function(){
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Link wiring
+      const wa = WHATSAPP_LINK;
+      ['waTop','waTopM','waHero','waContact'].forEach(id=>{
+        const el=document.getElementById(id); if(el){el.href=wa;}
+      });
+      const emailHref = "mailto:"+CONTACT_EMAIL+"?subject=Project%20inquiry%20from%20JAATools";
+      ['emailLink','emailLink2'].forEach(id=>{
+        const el=document.getElementById(id); if(el){el.href=emailHref;}
+      });
+
+      // Mobile menu
+      const toggle=document.getElementById('mobileToggle');
+      const menu=document.getElementById('mobileMenu');
+      if(toggle&&menu){
+        toggle.addEventListener('click',()=>{
+          const open=document.body.classList.toggle('mobile-open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.addEventListener('click',()=>{document.body.classList.remove('mobile-open'); toggle.setAttribute('aria-expanded','false');});
+      }
+
+      // Contact form -> email draft
+      window.sendBrief = function(e){
+        e.preventDefault();
+        const f=e.target;
+        const name=encodeURIComponent(f.name.value.trim());
+        const contact=encodeURIComponent(f.contact.value.trim());
+        const msg=encodeURIComponent(f.message.value.trim());
+        const wa=f.wa.checked?'Yes':'No';
+        const nda=f.nda.checked?'Yes':'No';
+        const body = `Name: ${name}%0AContact: ${contact}%0AWhatsApp follow-up: ${wa}%0ANDA required: ${nda}%0A%0AProject:%0A${msg}`;
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=Brief%20from%20${name}&body=${body}`;
+        return false;
+      }
+
+      // Starfield (tiny + efficient)
+      const c=document.getElementById('stars');
+      const dpr = Math.min(window.devicePixelRatio||1, 2);
+      const ctx=c.getContext('2d');
+      let w,h,stars=[];
+      function resize(){
+        w=window.innerWidth; h=window.innerHeight;
+        c.width=w*dpr; c.height=h*dpr; ctx.scale(dpr,dpr);
+        stars = Array.from({length: Math.min(250, Math.floor(w*h/6000))}, ()=>({
+          x: Math.random()*w,
+          y: Math.random()*h,
+          r: Math.random()*1.1+0.2,
+          o: Math.random()*0.6+0.2,
+          v: Math.random()*0.2+0.05
+        }));
+      }
+      function draw(t){
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle="#fff";
+        for(const s of stars){
+          s.o += (Math.random()-.5)*0.02;
+          if(s.o<0.2) s.o=0.2; if(s.o>0.9) s.o=0.9;
+          ctx.globalAlpha=s.o;
+          ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      resize(); draw();
+      window.addEventListener('resize', resize, {passive:true});
+    // Dot scroll indicator
+    const scrollDot = document.getElementById('scrollDot');
+    function updateScrollDot() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = docH > 0 ? scrollY / docH : 0;
+      // Move dot vertically within 80% of viewport height
+      const min = window.innerHeight * 0.1;
+      const max = window.innerHeight * 0.9;
+      const y = min + (max - min) * percent;
+      scrollDot.style.top = y + 'px';
+      // Optional: glow more at top/bottom
+      if (percent < 0.05 || percent > 0.95) {
+        scrollDot.style.boxShadow = '0 0 18px var(--fuchsia), 0 0 36px var(--cyan)';
+      } else {
+        scrollDot.style.boxShadow = '0 0 12px var(--fuchsia), 0 0 24px var(--cyan)';
+      }
+    }
+    window.addEventListener('scroll', updateScrollDot, {passive:true});
+    window.addEventListener('resize', updateScrollDot, {passive:true});
+    updateScrollDot();
+    })();
+  </script>
+</body>
+</html>
