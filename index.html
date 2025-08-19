@@ -170,8 +170,62 @@ html::-webkit-scrollbar {
     .card{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:var(--radius-2);padding:18px;box-shadow:var(--shadow)
+      border-radius:var(--radius-2);padding:18px;box-shadow:var(--shadow);
+      position: relative;
     }
+    @property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits:false;
+}
+
+
+.card::after, .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-2);
+  animation: 3s spin linear infinite;
+  pointer-events: none;
+  padding: 0;
+  background: none;
+  /* Border effect only */
+  mask:
+    linear-gradient(#fff 0 0) content-box, /* inner */
+    linear-gradient(#fff 0 0) border-box;  /* border */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, /* inner */
+    linear-gradient(#fff 0 0) border-box;  /* border */
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+.card::after {
+  border: 3px solid transparent;
+  background: conic-gradient(from var(--angle), transparent 10%, #3b82f6 60%, transparent 100%) border-box;
+}
+
+.card::before {
+  border: 3px solid transparent;
+  background: conic-gradient(from var(--angle), transparent 10%, #3b82f6 60%, transparent 100%) border-box;
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+.card::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
     .card h3{margin:.2rem 0;color:#fff;font-size:1.05rem}
     .card p{margin:.35rem 0 0;color:var(--ink-3);font-size:.95rem}
     .icon{
