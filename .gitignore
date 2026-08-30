@@ -1,1 +1,8 @@
 old/
+package-lock.json
+
+# Source documents (study guides) - inputs, not website content.
+*.pdf
+
+# Raw source drop for /advisor/dashboard/ - the integrated copy lives there.
+advisor_dashboard.html
